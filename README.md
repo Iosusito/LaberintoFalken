@@ -36,12 +36,13 @@ En la clase Maze se tienen los métodos estáticos que permiten cargar y guardar
 ```
 ## Tareas
 
- - Crear un método y usarlo en  save (Maze maze, File file) para guardar el laberinto en formato binario (**1,25puntos**)
+ - Crear un método y usarlo en  save (Maze maze, File file) para guardar el laberinto en formato binario (**1 punto**)
  - Crear un método y usarlo en  save (Maze maze, File file) para guardar el laberinto en formato XML pudiendo hacer manualmente o con librerías (**1,25 puntos**)
  - Crear un método y usarlo en  save (Maze maze, File file) para guardar el laberinto en formato JSON pudiendo hacerlo de forma manual o usando librerías externas (**1,25 puntos**)
- - Crear un método y usarlo en  Maze load ( File file) para cargar el laberinto en formato binario (**1,25 puntos**)
+ - Crear un método y usarlo en  Maze load ( File file) para cargar el laberinto en formato binario (**1 punto**)
  - Crear un método y usarlo en  Maze load ( File file) para cargar el laberinto en formato XML pudiendo hacer manualmente o con librerías (**1,25 puntos**)
  - Crear un método y usarlo en  Maze load ( File file) para cargar el laberinto en formato JSON pudiendo hacerlo de forma manual o usando librerías externas (**1,25 puntos**)
  -  Comentar el código correctamente (**0,5 puntos**)
  -  Almacenar todos los datos del laberinto (**0,5 puntos**)
  -  Que los ficheros json y XML sean válidos (**1,5 puntos**)
+ -  Filtar los ficheros con extensiones xml, json y bin(binario) (**0,5 puntos**)
