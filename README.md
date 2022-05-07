@@ -1,6 +1,6 @@
 # TRABAJANDO CON FICHEROS EN JAVA
 
-Java posee una serie de clases que permite trabajar con ficheros, en esta práctica se trabaja con estos tanto en formato binario, Json y XML, en especial estos dos últimos.
+Java posee una serie de clases que permite interactuar con ficheros, en esta práctica se trabaja con estos tanto en formato binario, Json y XML, en especial estos dos últimos.
    
 ## Enunciado
 Se ha desarrollado un editor de laberintos para el juego Falken's Mace de forma que sea sencillo crear y modificar niveles. Para terminar el proyecto queda poder guardar y cargar laberintos en los siguientes formatos:
@@ -15,7 +15,7 @@ El modelo del juego consiste simplemente en un laberinto representado por la cla
 ```Java
     private Size size;
     private Block[][] blocks;
-    private long time;
+    private double time;
     private String sound;
 ```
 
@@ -23,7 +23,7 @@ El modelo del juego consiste simplemente en un laberinto representado por la cla
 
 A su vez la clase Block unicamente tiene un String con el nombre del bloque que contiene (si contiene alguno).
 
-En la clase Maze se tienen los métodos estáticos que permiten cargar y guardar los laberintos, siendo la tarea principal de la práctica trabajar con fichero que almacenen objetos binarios, formato JSON y XML
+En la clase Maze se tienen los métodos estáticos que permiten cargar y guardar los laberintos, siendo la tarea principal de la práctica trabajar con fichero que almacenen objetos binarios, formato JSON y XML:
 
 ```Java
     public static Maze load(File file) {
