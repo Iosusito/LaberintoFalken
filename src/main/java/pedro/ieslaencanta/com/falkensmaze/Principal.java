@@ -119,85 +119,59 @@ public class Principal extends Application {
                 this.maze.reset(result.get());
             }
         });
+
         MenuItem saveMenuItem = new MenuItem("Guardar");
         saveMenuItem.setOnAction(actionEvent -> {
 
             final FileChooser fileChooser = new FileChooser();
             File file = fileChooser.showSaveDialog(scene.getWindow());
             fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("XML", "*.xml*"),
-                new FileChooser.ExtensionFilter("JSon", "*.json"),
-                new FileChooser.ExtensionFilter("Bin", "*.bin")
+                    new FileChooser.ExtensionFilter("XML", "*.xml*"),
+                    new FileChooser.ExtensionFilter("JSon", "*.json"),
+                    new FileChooser.ExtensionFilter("Bin", "*.bin")
             );
             if (file != null) {
                 try {
                     Maze.save(this.maze.getMaze(), file);
-
-                } catch (JAXBException ex) {
-                    Alert alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Infor error");
-                    alert.setHeaderText(null);
-                    alert.setContentText(ex.getMessage());
-
-                    alert.showAndWait();
                 } catch (Exception ex) {
-                    Alert alert = new Alert(AlertType.ERROR);
-                    alert.setTitle("Infor error");
-                    alert.setHeaderText(null);
-                    alert.setContentText(ex.getMessage());
-
-                    alert.showAndWait();
-
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-
         });
+
         MenuItem loadMenuItem = new MenuItem("Abrir");
         loadMenuItem.setOnAction(actionEvent -> {
             final FileChooser fileChooser = new FileChooser();
             fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("XML", "*.xml*"),
-                new FileChooser.ExtensionFilter("JSon", "*.json"),
-                new FileChooser.ExtensionFilter("Bin", "*.bin")
+                    new FileChooser.ExtensionFilter("XML", "*.xml*"),
+                    new FileChooser.ExtensionFilter("JSon", "*.json"),
+                    new FileChooser.ExtensionFilter("Bin", "*.bin")
             );
             File file = fileChooser.showOpenDialog(scene.getWindow());
             if (file != null) {
-                try {
-                    Maze m = Maze.load(file);
-                    this.maze.reset(new Size(m.getBlocks().length,m.getBlocks()[0].length));
-                    this.maze.setMaze(m);
-                    this.maze.draw();
-                } catch (IOException ex) {
-                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (Exception ex) {
-                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
+                Maze m = Maze.load(file);
+                this.maze.reset(new Size(m.getBlocks().length, m.getBlocks()[0].length));
+                this.maze.setMaze(m);
+                this.maze.draw();
             }
-
         });
+
         Menu optionsMenu = new Menu("Options");
         MenuItem soundMenu = new MenuItem("Sound");
         optionsMenu.getItems().add(soundMenu);
         soundMenu.setOnAction(actionEvent -> {
             final FileChooser fileChooser = new FileChooser();
             fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("mp3", "*.mp3*")
-             
+                    new FileChooser.ExtensionFilter("mp3", "*.mp3*")
             );
             File file = fileChooser.showOpenDialog(scene.getWindow());
             if (file != null) {
-
                 this.maze.getMaze().setSound(file.getAbsolutePath());
-
             }
-
         });
-        
-           MenuItem timeMenu = new MenuItem("Time");
-           timeMenu.setOnAction(eh -> {
+
+        MenuItem timeMenu = new MenuItem("Time");
+        timeMenu.setOnAction(eh -> {
             DialogTime dt = new DialogTime();
             dt.init();
             Optional<Double> result = dt.showAndWait();
@@ -207,8 +181,6 @@ public class Principal extends Application {
         });
         optionsMenu.getItems().add(timeMenu);
         timeMenu.setOnAction(actionEvent -> {
-           
-
         });
 
         MenuItem exitMenuItem = new MenuItem("Salir");
@@ -220,5 +192,4 @@ public class Principal extends Application {
         menuBar.getMenus().addAll(fileMenu, optionsMenu);//, webMenu, sqlMenu);
         return menuBar;
     }
-
 }

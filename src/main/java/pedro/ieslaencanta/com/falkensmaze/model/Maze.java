@@ -113,46 +113,50 @@ public class Maze {
         this.blocks = blocks;
     }
 
-    public static Maze load(File file)  {
+    public static Maze load(File file) {
         String extension = file.getName().substring(file.getName().lastIndexOf(".") + 1);
-      
-        return null;
 
+        return null;
     }
 
-    public static void save(Maze maze, File file) {
-        if (maze.sound == null || maze.sound.equals("")) {
+    public static void save(Maze maze, File file) throws Exception {
+        /*if (maze.sound == null || maze.sound.equals("")) {
             throw new Exception("Es necesario indicar el sonido del laberinto");
-        }
-      
+        }*/
+        //sacar la extension del archivo xml, json, bin
+        //if on la extension
+        Maze.saveJSON(maze, file);
     }
 
-    private static Maze loadJSON(File file)  {
+    private static Maze loadJSON(File file) {
         return null;
     }
 
-    private static Maze loadXML(File file)  {
-
-        return null;
-          
-    }
-
-    public static Maze loadBin(File file)  {
-      
+    private static Maze loadXML(File file) {
         return null;
     }
 
-    private static void saveJSON(Maze maze, File file)  {
-      
+    public static Maze loadBin(File file) {
+        return null;
     }
 
-    private static void saveXML(Maze maze, File file)  {
-      
+    private static void saveJSON(Maze maze, File file) throws FileNotFoundException {
+        Gson gson = new Gson();
+        //pasar a json
+        String json = gson.toJson(maze);
+        //System.out.println(json);
+        //se escribe el json en el archivo
+        PrintWriter p = new PrintWriter(file);
+        p.write(json);
+        //cerramos el archivo
+        p.close();
+    }
+
+    private static void saveXML(Maze maze, File file) {
 
     }
 
-    public static void saveBin(Maze maze, File file)  {
-      
-    }
+    public static void saveBin(Maze maze, File file) {
 
+    }
 }
