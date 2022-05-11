@@ -149,10 +149,17 @@ public class Principal extends Application {
             );
             File file = fileChooser.showOpenDialog(scene.getWindow());
             if (file != null) {
-                Maze m = Maze.load(file);
-                this.maze.reset(new Size(m.getBlocks().length, m.getBlocks()[0].length));
-                this.maze.setMaze(m);
-                this.maze.draw();
+                Maze m;
+                try {
+                    m = Maze.load(file);
+                    this.maze.reset(new Size(m.getBlocks().length, m.getBlocks()[0].length));
+                    this.maze.setMaze(m);
+                    this.maze.draw();
+                } catch (IOException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (JAXBException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
 
