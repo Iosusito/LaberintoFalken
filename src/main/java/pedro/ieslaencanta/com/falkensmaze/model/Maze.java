@@ -119,7 +119,7 @@ public class Maze implements Serializable {
         this.blocks = blocks;
     }
 
-    public static Maze load(File file) throws IOException, JAXBException {
+    public static Maze load(File file) throws IOException, JAXBException, FileNotFoundException, ClassNotFoundException {
         Maze m = null;
         //sacar la extension del archivo xml, json, bin
         String extension = file.getName().substring(file.getName().lastIndexOf(".") + 1);
@@ -138,9 +138,6 @@ public class Maze implements Serializable {
     }
 
     public static void save(Maze maze, File file) throws Exception {
-        /*if (maze.sound == null || maze.sound.equals("")) {
-            throw new Exception("Es necesario indicar el sonido del laberinto");
-        }*/
         //sacar la extension del archivo xml, json, bin
         String extension = file.getName().substring(file.getName().lastIndexOf(".") + 1);
         //switch con la extension
@@ -172,8 +169,11 @@ public class Maze implements Serializable {
         return m;
     }
 
-    public static Maze loadBin(File file) {
-        return null;
+    public static Maze loadBin(File file) throws FileNotFoundException, IOException, ClassNotFoundException {
+        FileInputStream fis = new FileInputStream(file.getAbsolutePath());
+        ObjectInputStream entrada = new ObjectInputStream(fis);
+        Maze m = (Maze) entrada.readObject();
+        return m;
     }
 
     private static void saveJSON(Maze maze, File file) throws FileNotFoundException {
@@ -195,7 +195,9 @@ public class Maze implements Serializable {
         marshaller.marshal(maze, file);
     }
 
-    public static void saveBin(Maze maze, File file) {
-        
+    public static void saveBin(Maze maze, File file) throws FileNotFoundException, IOException {
+        FileOutputStream fos = new FileOutputStream(file.getAbsolutePath());
+        ObjectOutputStream salida = new ObjectOutputStream(fos);
+        salida.writeObject(maze);
     }
 }
